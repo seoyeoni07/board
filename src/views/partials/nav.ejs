@@ -1,0 +1,8 @@
+<div class="right">
+  <% if (typeof user !== 'undefined' && user) { %>
+    <span class="user"><%= user.user_name %></span>
+    <a href="/logout">로그아웃</a>
+  <% } else { %>
+    <a href="/">로그인</a>
+  <% } %>
+</div>

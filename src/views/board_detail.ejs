@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/board.css">
+</head>
+<body>
+  <%- include('partials/nav', { title, user }) %>
+
+  <div class="board-wrap">
+    <h2><%= post.title %></h2>
+
+    <div class="board-meta">
+      <span>작성자: <%= post.author_name %></span>
+      <span>작성일: <%= post.created_at_fmt %></span>
+      <span>수정일: <%= post.updated_at_fmt %></span>
+    </div>
+
+    <div class="board-content"><%= post.content %></div>
+
+    <div class="board-foot">
+      <a href="/board" class="btn">목록</a>
+<% if (user && (user.user_id === post.user_id || user.role === 'admin')) { %>
+  <form method="post" action="/board/<%= post.post_id %>/delete" style="display:inline;">
+  <button type="submit" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?');">삭제</button>
+</form>
+<% } %>
+    </div>
+  </div>
+</body>
+</html>
